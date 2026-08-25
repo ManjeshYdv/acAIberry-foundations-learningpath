@@ -12,6 +12,8 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 DAY_PATTERN = re.compile(r"^## Day (\d+):", re.MULTILINE)
+DAY_SECTION_PATTERN = re.compile(r"^## Day (\d+):(.*?)(?=^## Day |^### Phase checkpoint|\Z)", re.MULTILINE | re.DOTALL)
+TRACKER_PATTERN = re.compile(r"^- \[[ xX]\] \[Day (\d+) ", re.MULTILINE)
 LINK_PATTERN = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
 HEADING_PATTERN = re.compile(r"^#{1,6}\s+(.+?)\s*#*\s*$", re.MULTILINE)
 REQUIRED_FILES = (
@@ -47,6 +49,25 @@ def validate_days(markdown_files: list[Path]) -> list[str]:
     if len(occurrences) != 60:
         errors.append(f"expected 60 day headings, found {len(occurrences)}")
 
+    return errors
+
+
+def validate_daily_format(markdown_files: list[Path]) -> list[str]:
+    errors: list[str] = []
+    sections: list[tuple[int, str, Path]] = []
+    for path in markdown_files:
+        text = path.read_text(encoding="utf-8")
+        sections.extend((int(day), section, path) for day, section in DAY_SECTION_PATTERN.findall(text))
+
+    for day, section, path in sections:
+        for label in ("**Goal:**", "**Task:**", "**Done when:**"):
+            if label not in section:
+                errors.append(f"{path.relative_to(ROOT)}: Day {day} is missing {label}")
+
+    tracker = (ROOT / "CURRICULUM.md").read_text(encoding="utf-8")
+    tracked_days = [int(day) for day in TRACKER_PATTERN.findall(tracker)]
+    if tracked_days != list(range(1, 61)):
+        errors.append("CURRICULUM.md must contain one tracker item for Days 1 through 60 in order")
     return errors
 
 
@@ -98,6 +119,7 @@ def main() -> int:
     markdown_files = sorted(ROOT.rglob("*.md"))
     errors = validate_required_files()
     errors.extend(validate_days(markdown_files))
+    errors.extend(validate_daily_format(markdown_files))
     errors.extend(validate_local_links(markdown_files))
 
     if errors:
@@ -106,7 +128,7 @@ def main() -> int:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Validated 60 unique days and local links across {len(markdown_files)} Markdown files.")
+    print(f"Validated 60 formatted days, tracker items, and local links across {len(markdown_files)} Markdown files.")
     return 0
 
 

@@ -1,39 +1,31 @@
-# Day NN — Topic
+# Day NN: Topic
 
-**Date:** YYYY-MM-DD
+**Date:**
 
 **Time spent:**
 
-**Branch/PR:**
-
-## Intended outcome
-
-What observable result should exist at the end of this session?
-
-## What I learned
-
-- Concept I can now explain:
-- Assumption that changed:
-- Question still open:
-
-## What I built
-
-Summarize the change and link to the commit, test, diagram, benchmark, or deployment evidence.
-
-## Verification
+## Commands I practiced
 
 ```text
-Commands run and concise results. Remove credentials and private data.
+command --example
 ```
 
-Manual cases checked:
+## Task result
 
-- Happy path:
-- Edge/failure path:
+What changed or what did I discover?
 
-## Reflection
+## Proof
 
-- What worked:
-- What failed and why:
-- What I would do differently:
-- First action for the next day:
+Commit, file, screenshot, command output, or URL:
+
+## One error and its fix
+
+- Symptom:
+- Evidence:
+- Cause:
+- Fix:
+
+## Can I explain it without AI?
+
+- [ ] Yes
+- [ ] Not yet; repeat this day

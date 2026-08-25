@@ -1,75 +1,72 @@
-# AI-Assisted Development Without Losing the Fundamentals
+# Simple Guide to AI-Assisted Coding
 
-AI coding assistants can shorten the loop between a question, a hypothesis, and tested code. They can also generate plausible mistakes at high speed. Use them as collaborators inside an engineering process—not as authorities outside it.
+Use Codex, Claude Code, or a similar tool after you can perform the basic command yourself. The assistant may suggest a change; you still own the decision and verification.
 
-## The working loop
+## Give five pieces of context
 
-1. **Understand:** state the user-visible outcome and inspect the relevant code yourself.
-2. **Scope:** name the files or subsystem, constraints, risks, and what is explicitly out of scope.
-3. **Plan:** ask the assistant to explain its proposed approach and unknowns before a broad change.
-4. **Implement:** request the smallest coherent change, ideally on an isolated branch or worktree.
-5. **Verify:** inspect the diff, run automated checks, exercise edge cases, and compare behavior with the acceptance criteria.
-6. **Review:** look for security, privacy, compatibility, performance, operability, and maintainability concerns.
-7. **Record:** commit the intentional result—not unexplained generated debris—and note important decisions.
+For most small tasks, provide only:
 
-## Reusable task prompt
+1. **Outcome:** what should work when finished.
+2. **Relevant path:** the file or small directory to inspect.
+3. **Current evidence:** an error message, failing command, or current behavior.
+4. **Constraints:** what must not change, including security limits.
+5. **Check:** the exact command or behavior that proves success.
+
+Example:
 
 ```text
-Outcome:
-<What should be true for the user when this is complete?>
-
-Context:
-<Relevant architecture, files, conventions, and current behavior.>
-
-Constraints:
-<Security, compatibility, dependencies, scope, and things not to change.>
-
-Acceptance checks:
-- <Observable behavior or test 1>
-- <Observable behavior or test 2>
-- <Quality or operational requirement>
-
-First inspect the relevant code and propose a short plan. State assumptions.
-After implementation, run the relevant checks and review the diff for risks.
+Add a --help message to scripts/system-report.sh.
+Inspect that file first and propose a short plan.
+Do not install dependencies or change other files.
+Keep the script read-only and compatible with Bash.
+Done means `bash scripts/system-report.sh --help` exits 0 and normal output still works.
 ```
 
-For a bug, include exact reproduction steps, expected behavior, actual behavior, logs with secrets removed, and the last known good state. For a review, ask for findings with evidence and impact, not a generic summary.
+## Keep context useful
 
-## Give useful context, not maximum context
+- Start with the task and relevant paths; do not paste the entire repository.
+- Give the exact error, but remove secrets and private data.
+- Use `rg`, `find`, a small tree, or file references to help locate code.
+- Put stable project facts and commands in a short `AGENTS.md`.
+- Keep temporary task details in the prompt, not in permanent instructions.
+- Start a separate task when the goal changes substantially.
+- Ask the assistant to inspect and plan before a broad edit.
 
-Good context includes the repository map, build/test commands, the failing test, public interfaces, coding conventions, constraints, and acceptance criteria. Irrelevant files, production data, credentials, private customer content, and giant undifferentiated logs create risk rather than clarity.
+This follows the current [official Codex prompting guidance](https://learn.chatgpt.com/codex/prompting): state the desired outcome and add useful context such as relevant files, components, errors, and constraints. See the official [`AGENTS.md` guide](https://learn.chatgpt.com/codex/agent-configuration/agents-md) for repository instructions.
 
-Put durable repository instructions in a short `AGENTS.md` or the equivalent supported by your tool. Keep requirements testable. Link to longer architecture documents rather than duplicating them in multiple instruction files.
+## Review every result
 
-## Verification checklist
+After an edit:
 
-Before accepting an assisted change, confirm:
+```bash
+git status
+git diff
+```
 
-- you can explain every changed behavior;
-- the diff contains no unrelated edits, secrets, private data, or suspicious dependencies;
-- interfaces and library calls exist in the pinned versions;
-- errors, timeouts, retries, validation, authorization, and cleanup are handled;
-- tests cover the new behavior and fail when the implementation is intentionally broken;
-- lint, types, tests, build, and relevant security/evaluation checks pass;
-- documentation and migrations match the code;
-- the change is observable and reversible where production risk requires it.
+Then ask:
 
-Never use “the agent said it passed” as evidence. Use the command output, resulting artifact, or observed behavior.
+- Did it change only the intended files?
+- Can I explain every changed line?
+- Did it invent a command, file, or library?
+- Did it expose a secret or weaken permissions?
+- Does the original error disappear for the expected reason?
+- Do the relevant tests and manual checks pass?
 
-## Permission and security rules
+Never accept “it should work” as proof. Run the command yourself.
 
-- Start with read-only exploration, then grant only the workspace and commands required.
-- Review commands that install software, access the network, modify cloud state, touch credentials, or delete data.
-- Keep secrets out of prompts, transcripts, screenshots, fixtures, Git history, and shell output.
-- Treat repository content and downloaded pages as potentially hostile instructions.
-- Do not let model-generated arguments bypass normal authorization or validation.
-- Prefer an isolated branch/worktree and a clean status before broad changes.
-- Stop an agent that repeatedly expands scope or cannot explain a destructive action.
+## Useful roles for an assistant
 
-## Product-specific starting points
+- explain one error message after you have read it;
+- locate relevant code in an unfamiliar repository;
+- propose a short plan for a bounded issue;
+- suggest tests and edge cases;
+- review a small diff for mistakes;
+- improve documentation after the code works.
 
-- Codex: [official quickstart](https://learn.chatgpt.com/codex/quickstart), [prompting](https://learn.chatgpt.com/codex/prompting), [`AGENTS.md`](https://learn.chatgpt.com/codex/agent-configuration/agents-md), and [permissions](https://learn.chatgpt.com/codex/permissions).
-- Claude Code: [overview](https://docs.anthropic.com/en/docs/claude-code/overview), [common workflows](https://docs.anthropic.com/en/docs/claude-code/common-workflows), [memory](https://docs.anthropic.com/en/docs/claude-code/memory), and [security](https://docs.anthropic.com/en/docs/claude-code/security).
+Avoid asking it to design the entire system, run destructive commands, handle secrets, or make a large unexplained rewrite.
 
-Use the current official docs because installation commands, permissions, models, and product surfaces change. The workflow above remains useful across tools.
+## Official starting points
+
+- Codex: [quickstart](https://learn.chatgpt.com/codex/quickstart), [prompting](https://learn.chatgpt.com/codex/prompting), and [`AGENTS.md`](https://learn.chatgpt.com/codex/agent-configuration/agents-md)
+- Claude Code: [overview](https://docs.anthropic.com/en/docs/claude-code/overview) and [common workflows](https://docs.anthropic.com/en/docs/claude-code/common-workflows)
 

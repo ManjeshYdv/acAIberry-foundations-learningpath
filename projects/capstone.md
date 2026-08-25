@@ -1,155 +1,95 @@
-# Capstone: Grounded
+# Capstone: Ticket Classifier
 
-Grounded is a multi-user knowledge assistant that ingests a chosen document collection and answers questions with evidence-linked citations. It is intentionally small enough to finish and rich enough to exercise the foundations of production AI engineering.
+Ticket Classifier is a small service that labels synthetic support messages as `billing`, `account`, or `technical`. It exists to connect the fundamentals—not to demonstrate advanced machine learning.
 
-Use a harmless public or synthetic document set: project documentation, public policy, public research papers, or your own notes. Do not upload employer data, credentials, medical records, or other sensitive material to third-party model services.
-
-## User story
-
-As an authenticated user, I can create a collection, add supported documents, observe ingestion, ask questions, inspect the cited source passages, and delete my data. If the collection does not support an answer, the assistant says so clearly.
-
-## Reference architecture
+## The connected path
 
 ```mermaid
 flowchart LR
-    U[Browser] -->|HTTPS| W[React web app]
-    W -->|JSON / streaming| A[FastAPI service]
-    A -->|transactions| P[(PostgreSQL + vectors)]
-    A -->|enqueue| Q[(Redis / queue)]
-    Q --> K[Ingestion worker]
-    K -->|documents, chunks, embeddings| P
-    A -->|bounded context + request| M[Model provider]
-    A --> O[Logs, metrics, traces]
-    K --> O
-    CI[GitHub Actions] -->|tested image digest| R[Container registry]
-    R --> D[Staging / production]
+    F[CSV tickets] --> P[Python training with uv]
+    P --> M[Saved classifier]
+    M --> A[FastAPI /predict]
+    A --> C[Docker container]
+    G[GitHub Actions] --> C
+    C --> R[GHCR image]
+    R --> V[Azure Ubuntu VM]
+    U[Your computer] -->|SSH tunnel| V
+    V --> L[Logs and resource checks]
 ```
 
-The diagram is a reference, not a mandatory vendor list. A simple stack is preferred over extra infrastructure without a measured need.
+The project stays the same while the way you work with it improves:
 
-## Functional requirements
+- Days 1–20: create files and learn to inspect the machine, errors, logs, processes, ports, HTTP, and SSH.
+- Days 21–30: track the project with Git/GitHub and make one small assisted change.
+- Days 31–40: create the Python project, train the classifier, test it, and serve predictions.
+- Days 41–50: manage the process, containerize it, understand Azure resources, and deploy to a VM.
+- Days 51–60: test/build it in GitHub Actions, publish a known image, monitor it, and recover it.
 
-1. A user can authenticate and can access only their own collections and documents.
-2. The system accepts Markdown and plain text; an HTTP source is optional and strictly constrained.
-3. Ingestion is asynchronous, idempotent, observable, and safe to retry.
-4. Documents are normalized, chunked deterministically, embedded, and versioned.
-5. The system retrieves authorized evidence and produces a structured answer with valid citations.
-6. It abstains when the available evidence is insufficient.
-7. Users can inspect source passages and delete a collection.
-8. A fake model mode supports local development, conventional tests, and most load tests without a paid API.
-
-## Non-functional requirements
-
-- **Reproducibility:** a clean checkout can run locally from declared versions and one documented command sequence.
-- **Correctness:** types, unit/integration/browser tests, migrations, and a versioned AI evaluation set protect behavior.
-- **Security:** least privilege, tenant filters, validation, safe rendering, secret management, dependency/secret scans, and explicit confirmation for side effects.
-- **Reliability:** timeouts, bounded retries, idempotency, health/readiness checks, backups, rollback, and graceful degradation.
-- **Observability:** request/job/run correlation across structured logs, metrics, and traces without leaking private content.
-- **Performance:** measured p50/p95 latency, a stated capacity envelope, bounded queues/context, and concurrency control.
-- **AI quality:** retrieval and answer quality measured separately across meaningful dataset slices.
-- **Cost:** token usage and infrastructure estimates visible per representative task, with spending limits or alerts.
-- **Privacy:** documented data flow, provider handling assumptions, retention, and deletion behavior.
-- **Accessibility:** keyboard-usable UI, semantic structure, labels, focus states, and understandable loading/error feedback.
-
-## Suggested repository shape
+## Minimum project shape
 
 ```text
-grounded-ai/
-├── .github/workflows/       # CI and deployment
-├── apps/
-│   ├── api/                 # FastAPI transport/composition
-│   └── web/                 # React/TypeScript interface
-├── packages/
-│   └── ingestion/           # document pipeline and CLI
-├── workers/                 # background job entry points
-├── evals/                   # versioned cases, runner, reports
-├── tests/                   # cross-component and browser tests
-├── deploy/                  # Compose and optional IaC
-├── docs/
-│   ├── adr/                 # architecture decisions
-│   ├── runbooks/            # operational response
-│   └── architecture.md
+ticket-classifier/
+├── .github/workflows/ci.yml
+├── data/tickets.csv
+├── src/ticket_classifier/
+│   ├── api.py
+│   ├── data.py
+│   ├── predict.py
+│   ├── text.py
+│   └── train.py
+├── tests/
+├── scripts/
+│   ├── check-service.sh
+│   └── system-report.sh
+├── notes/
 ├── .env.example
+├── .gitignore
 ├── AGENTS.md
-├── README.md
-└── compose.yaml
+├── compose.yaml
+├── Dockerfile
+├── pyproject.toml
+├── uv.lock
+└── README.md
 ```
 
-Adapt this after recording why. Do not create empty layers merely to match the diagram.
+Create files only when their day arrives. Empty scaffolding makes the project look bigger without making it clearer.
 
-## Milestones
+## Required behavior
 
-| Day | Deliverable | Acceptance evidence |
-| ---: | --- | --- |
-| 10 | `dev-doctor` shell CLI | Safe checks, lint/tests, clear exit status |
-| 20 | Document-ingestion package | Clean install, deterministic chunks, typed/tests/logs |
-| 30 | Full-stack document manager | Authenticated CRUD, database, worker, browser test |
-| 40 | Source-citing assistant | Retrieval benchmark, citations, abstention, isolation tests |
-| 50 | Containerized release candidate | Evals, threat model, telemetry, scans, Compose demo |
-| 60 | Operated deployment and case study | CI/CD, HTTPS, SLO/runbook, recovery/load evidence, release |
+- Training reads a small synthetic CSV with `text` and `label` columns.
+- Invalid or empty data produces a clear error and non-zero exit code.
+- A scikit-learn pipeline transforms text and predicts one of three labels.
+- The model can be regenerated from the committed code and synthetic data.
+- `GET /health` returns a simple healthy response.
+- `POST /predict` validates bounded non-empty text and returns a category.
+- Tests do not need internet access, Azure, or a paid model API.
+- Application logs go to stdout/stderr so PM2 and Docker can collect them.
+- Docker runs the service as a non-root user.
+- Azure exposes SSH only to the learner's IP; the API is reached through an SSH tunnel.
 
-## Minimum API surface
+## Six checkpoints
 
-Exact paths may vary, but preserve these capabilities:
+| Day | Proof |
+| ---: | --- |
+| 10 | A readable `system-report.sh` |
+| 20 | A written diagnosis using PID, port, log, and HTTP status |
+| 30 | A small reviewed pull request completed with an AI assistant |
+| 40 | Tests, training, `/health`, and `/predict` work locally |
+| 50 | The same API runs in Docker on an Azure VM through an SSH tunnel |
+| 60 | CI passes, a known image is redeployed, and one failure is diagnosed |
 
-- `GET /health` — process health only;
-- `GET /ready` — dependency readiness without sensitive details;
-- `POST /collections` and `GET /collections`;
-- `POST /collections/{id}/documents`;
-- `GET /jobs/{id}`;
-- `POST /collections/{id}/questions`;
-- `DELETE /collections/{id}`;
-- a stable structured error body containing code, safe message, and request ID.
+## Keep it intentionally small
 
-All collection-scoped operations enforce the current user's ownership below the route layer as well as in database queries. Pagination has a maximum. Network and model calls have timeouts. Requests that create retryable work support idempotency.
+Do not add a database, frontend framework, authentication system, RAG pipeline, agent framework, Kubernetes cluster, or paid LLM API during these 60 days. Those are excellent later projects. Here they would hide the fundamentals behind more moving parts.
 
-## Evaluation slices
+## Final demonstration
 
-Your versioned evaluation set should include:
+At Day 60, demonstrate this sequence:
 
-- direct, paraphrased, and multi-document answerable questions;
-- unanswerable and ambiguous questions;
-- conflicting and outdated sources;
-- source-citation and quoted-span correctness;
-- cross-tenant requests;
-- prompt injection embedded in a document and in a question;
-- long input, Unicode, empty content, and malformed model output;
-- provider timeout, rate limit, and unavailable dependency.
-
-Track retrieval hit-rate independently from groundedness, answer relevance, citation validity, abstention correctness, latency, and cost. A single blended score can conceal a dangerous failure.
-
-## Definition of done
-
-The capstone is complete when all of these are true:
-
-- [ ] A new contributor can set up and run it from a clean checkout.
-- [ ] Tool/runtime versions and dependencies are declared and locked.
-- [ ] No secrets or private datasets exist in current files or Git history.
-- [ ] Migrations build the database from empty and have a safe deployment plan.
-- [ ] Unit, integration, contract, browser, and deterministic evaluation checks pass in CI.
-- [ ] The live-model evaluation is reproducible, versioned, and reviewed before release.
-- [ ] Authorization is enforced for routes, retrieval, tools, caches, and citations.
-- [ ] Inputs/outputs are validated; network calls have timeouts and bounded retries.
-- [ ] Prompts, models, embeddings, datasets, and image artifacts have identifiable versions.
-- [ ] Images run as non-root, stop gracefully, are scanned, and contain no build secrets.
-- [ ] Staging uses HTTPS, managed secrets, restricted network access, and synthetic data.
-- [ ] Logs, metrics, traces, dashboards, SLOs, alerts, and a runbook support diagnosis.
-- [ ] Backup restore and deployment rollback have been tested in a safe environment.
-- [ ] Latency, capacity, AI quality, and cost are measured with stated assumptions.
-- [ ] Privacy, retention, deletion, limitations, and accepted risks are documented.
-- [ ] `v1.0.0` identifies the deployed commit and immutable image digest.
-- [ ] Unused cloud resources are removed and budget alerts remain enabled.
-
-## Optional extensions after Day 60
-
-Choose extensions because a measured requirement demands them:
-
-- hybrid lexical/vector search and reranking;
-- object storage and additional document formats;
-- feedback collection with privacy-safe analysis;
-- multimodal retrieval;
-- multi-region recovery;
-- Kubernetes and infrastructure as code;
-- a second model provider with contract and quality comparison;
-- fine-tuning only after prompt/RAG/evaluation evidence justifies it.
+1. Show the Git branch, pull request, CI run, image tag, and digest.
+2. SSH to the VM and inspect uptime, memory, disk, ports, containers, and logs.
+3. Open an SSH tunnel and call `/health` and `/predict`.
+4. Explain how the CSV became a model and how the model became a container.
+5. Introduce or describe one known failure and follow the troubleshooting checklist.
+6. Remove the Azure resource group when the learning environment is no longer needed.
 

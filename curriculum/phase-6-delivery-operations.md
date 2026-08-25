@@ -1,132 +1,127 @@
-# Phase 6: Delivery and Operations
+# Phase 6: CI/CD and Operations
 
-**Days 51–60 · Outcome:** automate trustworthy delivery, deploy the capstone, operate it against explicit reliability targets, recover from failure, and communicate the work as an engineering case study.
+**Days 51–60 · Result:** GitHub checks every change, builds a known image, and helps deploy it; you can monitor, secure, restore, and troubleshoot the Azure service with familiar commands.
 
-Create a `phase-6` branch. Use a staging environment first. Production deployment is optional if it would expose data, create unacceptable cost, or violate an organization's policy.
+Keep automation readable. A five-step workflow you understand is better than a copied enterprise pipeline.
 
-## Day 51: Continuous integration with GitHub Actions
+## Day 51: Understand a GitHub Actions workflow
 
-**Learn:** Workflows, events, jobs, runners, steps, actions, artifacts, matrices, caches, required checks, least-privilege tokens, and the difference between continuous integration, delivery, and deployment.
+**Goal:** Read the basic parts of workflow YAML.
 
-**Build:** Add CI triggered by pull requests and pushes to `main`. Run formatting/lint checks, types, unit tests, API integration tests with service containers, frontend tests, and the deterministic AI evaluation subset. Upload useful reports on failure.
+**Commands/concepts:** `.github/workflows`, `name`, `on`, `jobs`, `runs-on`, `steps`, `uses`, `run`.
 
-**Ship:** Protect `main` so the workflow must pass before merge. Intentionally break one check and capture evidence that CI blocks it.
+**Task:** Read a minimal workflow that checks out the repository and prints Python/uv versions. Predict when it runs and what machine executes it, then add it on a branch.
 
-**Check:** CI uses declared dependencies from a clean environment and does not require paid model calls or repository secrets for forked pull requests.
+**Done when:** The pull request shows one successful check and you can point to its trigger, job, runner, and steps.
 
-**Resources:** [GitHub Actions quickstart](https://docs.github.com/en/actions/writing-workflows/quickstart) · [Building and testing Python](https://docs.github.com/en/actions/how-tos/use-cases-and-examples/building-and-testing/building-and-testing-python) · [GitHub Actions service containers](https://docs.github.com/en/actions/use-cases-and-examples/using-containerized-services/about-service-containers)
+**Resource:** [GitHub Actions quickstart](https://docs.github.com/en/actions/writing-workflows/quickstart)
 
-## Day 52: Fast, trustworthy, and secure CI
+## Day 52: Run tests in CI
 
-**Learn:** Dependency caching versus artifacts, job parallelism, cancellation, flaky tests, action pinning, token permissions, OpenID Connect, dependency review, secret scanning, code scanning, SBOMs, provenance, and untrusted pull-request threats.
+**Goal:** Make the same locked test command run locally and on GitHub.
 
-**Build:** Split independent CI work into parallel jobs, cache using lockfile keys, cancel superseded runs, set explicit timeouts and minimal `permissions`, and pin third-party actions to reviewed commit SHAs where feasible. Add dependency and secret checks appropriate to repository visibility.
+**Commands:** `uv sync --locked`, `uv run pytest -q`; GitHub Actions logs.
 
-**Ship:** Measure cold and warm CI duration. Add a short workflow threat model covering untrusted code, credentials, artifact integrity, and dependency changes.
+**Task:** Extend the workflow to install `uv`, restore dependencies from the lockfile, and run tests. Introduce one harmless failing assertion, inspect the red log, fix it, and watch the check turn green.
 
-**Check:** No privileged deployment secret is exposed to arbitrary PR code; cache misses affect speed, not correctness.
+**Done when:** GitHub blocks the broken change and the fixed commit passes without an API key or other secret.
 
-**Resources:** [GitHub Actions security hardening](https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions) · [GitHub dependency review](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review) · [GitHub artifact attestations](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations)
+**Resource:** [Official uv GitHub Actions guide](https://docs.astral.sh/uv/guides/integration/github/)
 
-## Day 53: Continuous delivery and rollbacks
+## Day 53: Build a Docker image in CI
 
-**Learn:** Environments, promotion, approvals, immutable artifacts, build-once/promote-many, database migration compatibility, expand/contract changes, canary/blue-green/rolling deployment, feature flags, smoke tests, and rollback versus roll-forward.
+**Goal:** Prove every change can produce a container from a clean runner.
 
-**Build:** Design a workflow that builds immutable images on a version tag, scans them, records digests, deploys those exact digests to staging, runs migrations and smoke tests, and requires approval for production. Authenticate to cloud using OIDC where supported.
+**Commands/concepts:** `docker build`, image tag, build log, Git commit SHA.
 
-**Ship:** Write and rehearse a rollback plan for application code, configuration, and a backward-compatible database change. Add a deployment checklist with stop conditions.
+**Task:** Add a second job that builds the Docker image, including the Dockerfile's training step, and tags it with the commit SHA. It does not publish yet.
 
-**Check:** Re-running a deployment is idempotent; a failed smoke test halts promotion and leaves an observable event.
+**Done when:** A deliberately broken Dockerfile fails the job; after fixing it, the build passes and the log shows the intended tag.
 
-**Resources:** [GitHub deployment environments](https://docs.github.com/en/actions/reference/deployments-and-environments) · [GitHub OIDC for cloud](https://docs.github.com/en/actions/concepts/security/openid-connect) · [Martin Fowler: blue-green deployment](https://martinfowler.com/bliki/BlueGreenDeployment.html)
+**Resource:** [GitHub: publishing Docker images](https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images)
 
-## Day 54: Deploy to staging
+## Day 54: Publish an image to a registry
 
-**Learn:** Platform configuration, managed database connections, secrets, DNS, TLS, reverse proxies, process scaling, migrations, static assets, and smoke testing in a real environment.
+**Goal:** Store an immutable build that the VM can pull.
 
-**Build:** Deploy Grounded to staging through the delivery workflow. Configure an HTTPS URL, restricted CORS, managed secrets, database backups, log/trace export, health probes, and minimum/maximum scaling or spending limits. Seed only synthetic data.
+**Commands/concepts:** GitHub Container Registry, `docker login`, `docker pull`, tag versus digest, workflow `permissions`.
 
-**Ship:** A deployment record with commit SHA, image digests, migration version, config version, smoke-test result, and rollback target. Store no secret values in the record.
+**Task:** On a version tag such as `v0.1.0`, publish the tested image to GHCR with minimal `packages: write` permission. On the VM, authenticate only if the package is private and pull the image.
 
-**Check:** A new checkout can discover the URL and deployment procedure; direct database access is restricted; application and worker can be rolled independently when safe.
+**Done when:** Record the image name, version tag, commit SHA, and digest in `notes/release.md`; do not record tokens.
 
-**Resources:** Use your selected platform's official deployment guide · [Let's Encrypt: how it works](https://letsencrypt.org/how-it-works/) · [The Twelve-Factor App: processes](https://12factor.net/processes)
+**Resource:** [GitHub Container Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
 
-## Day 55: SLOs, alerts, and runbooks
+## Day 55: Deploy a known image safely
 
-**Learn:** Service-level indicators, objectives and agreements, availability and latency, error budgets, symptoms versus causes, actionable alerts, burn rates, on-call handoff, and runbooks.
+**Goal:** Deploy an identified image and keep a simple rollback target.
 
-**Build:** Define a small set of user-centered SLIs: successful API requests, successful grounded answers, p95 latency, and ingestion completion. Set initial SLOs from observed staging behavior. Build a dashboard and two symptom-based alerts with enough context to act.
+**Commands:** `docker compose pull`, `docker compose up -d`, `docker compose ps`, `curl`, `docker image inspect`.
 
-**Ship:** Write a runbook for “answers are failing or slow” with impact, triage queries, dependency checks, mitigations, escalation, recovery verification, and links—not passwords.
+**Task:** Change Compose on the VM to use the published version or digest instead of building. Pull, start, run `/health` and one prediction, and keep the previous image reference in the deployment note. Optionally trigger the same small script through a protected GitHub `staging` environment.
 
-**Check:** Trigger a safe synthetic failure and use the alert plus runbook to identify it. Tune noisy or unactionable signals.
+**Done when:** You can prove which commit/digest is running and switch back to the previous known image.
 
-**Resources:** [Google SRE workbook: SLOs](https://sre.google/workbook/implementing-slos/) · [Google SRE: practical alerting](https://sre.google/sre-book/practical-alerting/) · [OpenTelemetry signals](https://opentelemetry.io/docs/concepts/signals/)
+**Resources:** [GitHub deployment environments](https://docs.github.com/en/actions/reference/deployments-and-environments) · [Docker image digests](https://docs.docker.com/dhi/core-concepts/digests/)
 
-## Day 56: Failure drills, backups, and recovery
+## Day 56: Secure the VM and secrets
 
-**Learn:** Failure modes, fault injection, graceful degradation, recovery point objective (RPO), recovery time objective (RTO), backup versus replication, restore testing, disaster recovery, incident roles, and blameless review.
+**Goal:** Reduce obvious exposure without pretending the practice VM is automatically production-grade.
 
-**Build:** Safely simulate one dependency timeout, worker termination, bad deployment/configuration, and database restore into a disposable environment. Verify the UI degrades clearly and jobs remain recoverable. Measure actual recovery time and data loss.
+**Commands/tools:** Azure NSG rules, `ss -lntp`, `sudo ufw status`, SSH configuration inspection, `docker inspect` with care.
 
-**Ship:** Complete the [incident review template](../templates/incident-review.md) for the most instructive drill and update the runbook with what was missing.
+**Task:** Confirm password SSH is disabled, port `22` is restricted to your IP, the API is loopback-only, unused inbound rules are removed, secrets are outside Git/images, and system packages are current. Understand that membership in the `docker` group is root-equivalent.
 
-**Check:** A backup is not considered valid until a restore is verified; the drill never targets real user data.
+**Done when:** `notes/security-check.md` lists each verified control and remaining limitation without including secret values.
 
-**Resources:** [Google SRE: postmortem culture](https://sre.google/sre-book/postmortem-culture/) · [PostgreSQL backup and restore](https://www.postgresql.org/docs/current/backup.html) · [Principles of chaos engineering](https://principlesofchaos.org/)
+**Resources:** [Azure VM security recommendations](https://learn.microsoft.com/en-us/azure/virtual-machines/security-recommendations) · [Docker daemon attack surface](https://docs.docker.com/engine/security/)
 
-## Day 57: Load testing and capacity
+## Day 57: Monitor the running service
 
-**Learn:** Workload models, throughput, concurrency, saturation, percentiles, coordinated omission, warm-up, bottlenecks, rate limiting, queue depth, capacity envelopes, and cost under load.
+**Goal:** Use one short checklist to answer whether the VM and app are healthy.
 
-**Build:** Define a realistic read/write/question mix with synthetic data. Load test staging gradually, stop at a safe budget/limit, and observe API, database, queue, retrieval, and model-provider behavior. For paid model calls, substitute a latency/error-controlled fake for most load.
+**Commands:** `uptime`, `htop`, `free -h`, `df -h`, `ss -lntp`, `docker ps`, `docker stats`, `docker logs --since`, `journalctl -u docker`, `curl`.
 
-**Ship:** A capacity report with environment, workload, p50/p95/p99, error rate, saturation point, bottleneck, cost projection, and next scaling action.
+**Task:** Write `scripts/check-service.sh` to perform read-only checks for disk, memory, container status, and local `/health`. Then generate one prediction and find its log line.
 
-**Check:** The test has explicit stop conditions and does not accidentally test a third-party service or exceed provider limits.
+**Done when:** The script clearly reports success/failure, and you can locate a CPU, memory, disk, container, port, or application problem with the appropriate command.
 
-**Resources:** [k6 documentation](https://grafana.com/docs/k6/latest/) · [Locust documentation](https://docs.locust.io/) · [Google SRE: addressing cascading failures](https://sre.google/sre-book/addressing-cascading-failures/)
+**Resource:** [Docker logs](https://docs.docker.com/reference/cli/docker/container/logs/)
 
-## Day 58: Releases, documentation, and decisions
+## Day 58: Back up and restore the small app
 
-**Learn:** Semantic versioning, changelogs, release notes, deprecation, architecture decision records, user versus operator documentation, reproducible demos, and communicating limitations honestly.
+**Goal:** Know what must be backed up and what can be rebuilt.
 
-**Build:** Audit onboarding from a clean clone. Write concise architecture, local development, testing, deployment, operations, API, evaluation, data/privacy, and troubleshooting sections. Close or label stale assumptions. Turn noteworthy choices into ADRs.
+**Commands:** `tar`, `sha256sum`, `docker pull`, Git tags, the training command.
 
-**Ship:** Prepare `v1.0.0` release notes containing capabilities, evidence, known limitations, upgrade/migration notes, rollback target, and image digests. Generate an SBOM if your build platform supports it.
+**Task:** Classify project state: source/synthetic data in Git, image in GHCR, configuration documented, secrets managed separately, and model reproducible from code/data. Delete only a disposable local model artifact, regenerate it, compare behavior, and rehearse pulling the known image on the VM.
 
-**Check:** Ask another person—or a fresh environment—to follow the README without oral instructions and record every point of friction.
+**Done when:** `notes/recovery.md` states recovery order and proves the app can return from a missing container/model without relying on an untracked laptop file.
 
-**Resources:** [Semantic Versioning](https://semver.org/) · [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · [Architecture Decision Records](https://adr.github.io/)
+**Resource:** [GitHub releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
 
-## Day 59: Production readiness review
+## Day 59: Troubleshoot one failure end to end
 
-**Learn:** Release gates, risk acceptance, launch criteria, ownership, support boundaries, rollback signals, and why unresolved high-severity findings outweigh a deadline.
+**Goal:** Diagnose in layers instead of trying random fixes.
 
-**Build:** Review the capstone against the [definition of done](../projects/capstone.md#definition-of-done). Run all tests/evals/scans, restore from backup, verify dashboards and alerts, inspect permissions and costs, rotate a practice credential, and rehearse deployment plus rollback.
+**Commands:** All earlier inspection commands; change only one controlled setting.
 
-**Ship:** Sign a dated readiness review listing evidence links, open risks with owners, launch decision, and rollback triggers. Fix blockers; do not relabel them as documentation issues.
+**Task:** Safely introduce one failure, such as a wrong container port or missing model path. Follow this order: reproduce with `curl`; check process/container; check listening port; read logs; check resources; inspect configuration; inspect recent Git/deployment changes. Fix it and verify recovery.
 
-**Check:** Someone other than the author can operate the service using the repository and runbook.
+**Done when:** Complete the [troubleshooting note](../templates/troubleshooting-note.md) with symptom, evidence, cause, fix, and prevention.
 
-**Resources:** [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) · [Production readiness checklist ideas](https://gruntwork.io/devops-checklist/) · [Google SRE workbook](https://sre.google/workbook/table-of-contents/)
+**Resource:** [How to ask good debugging questions](https://stackoverflow.com/help/minimal-reproducible-example)
 
-## Day 60: Launch, teach, and plan the next 90 days
+## Day 60: Final checkpoint redeploy and explain everything
 
-**Build:** Promote the reviewed artifact to your chosen final environment, or run a production-like local launch if public deployment is unsafe or unaffordable. Execute smoke tests, observe it, and roll back if a launch criterion fails.
+**Goal:** Prove the fundamentals are connected and repeatable.
 
-**Ship:** Tag `v1.0.0` and `day-60`. Publish a short case study covering the problem, architecture, hardest tradeoff, evaluation evidence, incident lesson, cost/latency result, security posture, limitations, and live/demo links. Record a five-minute engineering walkthrough.
+**Task:** Stop and remove the application containers, then redeploy the known image using only your README/runbook. Test health and prediction through the SSH tunnel. Show the GitHub checks, image digest, Azure resource map, process/container logs, and system resources.
 
-**Teach:** Explain one subsystem to another learner without slides. Answer questions using code, diagrams, logs, and measurements.
+**Done when:** In ten minutes, you can explain terminal → Git/GitHub → `uv`/Python → data/model → FastAPI → Docker image/container → registry → Azure resources/SSH → logs/health. Record a short demo and delete the Azure resource group when no longer needed.
 
-**Continue:** Write a 90-day plan driven by your gaps: deeper ML/math, data engineering, Kubernetes/Terraform, a cloud certification, open-source contribution, or a second domain-specific AI product. Choose one—not all.
+**Resource:** [Simple runbook template](../templates/runbook.md)
 
-**Check:** The portfolio tells an evidence-based engineering story, not “I followed a tutorial.” Tear down unused cloud resources and keep budget alerts enabled.
+### Final checkpoint
 
-**Resources:** [GitHub releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) · [Diátaxis documentation framework](https://diataxis.fr/) · [Google technical writing courses](https://developers.google.com/tech-writing)
-
-## Phase 6 exit ticket
-
-Deploy a known artifact, identify it by commit and digest, observe a request, explain the SLO, diagnose a synthetic failure, restore or roll back, and show the evaluation evidence. If you can do that, you have moved beyond a demo into production-minded AI engineering.
-
+You are ready for a larger AI project when you can repeat the deployment, diagnose a broken port or model path, recover a known image, and explain every layer without handing the terminal to an AI assistant.

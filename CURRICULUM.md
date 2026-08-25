@@ -1,98 +1,90 @@
-# Complete 60-Day Curriculum
+# 60-Day Progress Tracker
 
-This is the quick navigation page. Each linked phase contains the lesson, build task, evidence of completion, and carefully selected resources for that day.
+This page is the single checklist for the course. Complete the linked task, replace `proof` with a commit/log/screenshot path, and then change `[ ]` to `[x]`.
 
-## Phase 1 — Developer foundations
+## Phase 1: Linux essentials
 
-| Day | Topic | Production artifact |
-| ---: | --- | --- |
-| [1](curriculum/phase-1-developer-foundations.md#day-1-your-engineering-workstation) | Engineering workstation | Version inventory and learning contract |
-| [2](curriculum/phase-1-developer-foundations.md#day-2-files-paths-and-the-shell) | Files, paths, shell | Repeatable workspace commands |
-| [3](curriculum/phase-1-developer-foundations.md#day-3-streams-pipes-and-text-processing) | Streams and text processing | Log-analysis pipeline |
-| [4](curriculum/phase-1-developer-foundations.md#day-4-processes-permissions-and-environments) | Processes and permissions | Process-debugging notes |
-| [5](curriculum/phase-1-developer-foundations.md#day-5-networking-http-dns-and-ssh) | Networking fundamentals | Request-path diagram |
-| [6](curriculum/phase-1-developer-foundations.md#day-6-git-as-a-history-graph) | Git fundamentals | Clean local history |
-| [7](curriculum/phase-1-developer-foundations.md#day-7-branches-conflicts-and-recovery) | Git collaboration | Resolved conflict and recovery drill |
-| [8](curriculum/phase-1-developer-foundations.md#day-8-github-pull-requests-and-review) | GitHub workflow | Reviewed pull request |
-| [9](curriculum/phase-1-developer-foundations.md#day-9-ai-assisted-development-with-judgment) | AI coding assistants | Verified assisted change |
-| [10](curriculum/phase-1-developer-foundations.md#day-10-milestone-build-dev-doctor) | Milestone: Dev Doctor | Tested diagnostics CLI |
+- [ ] [Day 1 — Open the terminal and create the project](curriculum/phase-1-linux-essentials.md#day-1-open-the-terminal-and-create-the-project) — proof:
+- [ ] [Day 2 — Navigate with pwd, ls, and cd](curriculum/phase-1-linux-essentials.md#day-2-navigate-with-pwd-ls-and-cd) — proof:
+- [ ] [Day 3 — Create, copy, move, and remove files](curriculum/phase-1-linux-essentials.md#day-3-create-copy-move-and-remove-files) — proof:
+- [ ] [Day 4 — Read files without opening an editor](curriculum/phase-1-linux-essentials.md#day-4-read-files-without-opening-an-editor) — proof:
+- [ ] [Day 5 — Edit safely with Nano](curriculum/phase-1-linux-essentials.md#day-5-edit-safely-with-nano) — proof:
+- [ ] [Day 6 — Search text with grep and ripgrep](curriculum/phase-1-linux-essentials.md#day-6-search-text-with-grep-and-ripgrep) — proof:
+- [ ] [Day 7 — Combine commands with pipes](curriculum/phase-1-linux-essentials.md#day-7-combine-commands-with-pipes) — proof:
+- [ ] [Day 8 — Inspect processes with ps, top, and htop](curriculum/phase-1-linux-essentials.md#day-8-inspect-processes-with-ps-top-and-htop) — proof:
+- [ ] [Day 9 — Check disk and memory](curriculum/phase-1-linux-essentials.md#day-9-check-disk-and-memory) — proof:
+- [ ] [Day 10 — Checkpoint: build a system report](curriculum/phase-1-linux-essentials.md#day-10-checkpoint-build-a-system-report) — proof:
 
-## Phase 2 — Python engineering
+## Phase 2: Logs, errors, networks, and SSH
 
-| Day | Topic | Production artifact |
-| ---: | --- | --- |
-| [11](curriculum/phase-2-python-engineering.md#day-11-reproducible-python-projects) | Environments and dependencies | Locked Python project |
-| [12](curriculum/phase-2-python-engineering.md#day-12-data-functions-and-comprehensions) | Python core | Text-statistics module |
-| [13](curriculum/phase-2-python-engineering.md#day-13-modules-errors-and-logging) | Modules and failures | Structured application logs |
-| [14](curriculum/phase-2-python-engineering.md#day-14-files-json-and-http-clients) | I/O and APIs | Defensive fetch-and-save command |
-| [15](curriculum/phase-2-python-engineering.md#day-15-types-models-and-validation) | Types and validation | Validated document model |
-| [16](curriculum/phase-2-python-engineering.md#day-16-tests-and-test-driven-debugging) | Testing | Focused test suite |
-| [17](curriculum/phase-2-python-engineering.md#day-17-quality-automation) | Linting and static checks | One-command quality gate |
-| [18](curriculum/phase-2-python-engineering.md#day-18-configuration-secrets-and-architecture) | Configuration and design | Safe configuration boundary |
-| [19](curriculum/phase-2-python-engineering.md#day-19-cli-design-and-packaging) | CLI and packaging | Installable CLI |
-| [20](curriculum/phase-2-python-engineering.md#day-20-milestone-document-ingestion-package) | Milestone: ingestion | Versioned ingestion package |
+- [ ] [Day 11 — Understand output, errors, and exit codes](curriculum/phase-2-logs-network-ssh.md#day-11-understand-output-errors-and-exit-codes) — proof:
+- [ ] [Day 12 — Read changing logs with tail](curriculum/phase-2-logs-network-ssh.md#day-12-read-changing-logs-with-tail) — proof:
+- [ ] [Day 13 — Read a Python traceback](curriculum/phase-2-logs-network-ssh.md#day-13-read-a-python-traceback) — proof:
+- [ ] [Day 14 — Understand permissions and sudo](curriculum/phase-2-logs-network-ssh.md#day-14-understand-permissions-and-sudo) — proof:
+- [ ] [Day 15 — Use environment variables and PATH](curriculum/phase-2-logs-network-ssh.md#day-15-use-environment-variables-and-path) — proof:
+- [ ] [Day 16 — Install and inspect packages](curriculum/phase-2-logs-network-ssh.md#day-16-install-and-inspect-packages) — proof:
+- [ ] [Day 17 — Inspect services with systemctl and journalctl](curriculum/phase-2-logs-network-ssh.md#day-17-inspect-services-with-systemctl-and-journalctl) — proof:
+- [ ] [Day 18 — Understand IP addresses, DNS, and ports](curriculum/phase-2-logs-network-ssh.md#day-18-understand-ip-addresses-dns-and-ports) — proof:
+- [ ] [Day 19 — Inspect HTTP with curl](curriculum/phase-2-logs-network-ssh.md#day-19-inspect-http-with-curl) — proof:
+- [ ] [Day 20 — Checkpoint: diagnose a local server](curriculum/phase-2-logs-network-ssh.md#day-20-checkpoint-diagnose-a-local-server) — proof:
 
-## Phase 3 — Full-stack systems
+## Phase 3: Git, GitHub, and coding assistants
 
-| Day | Topic | Production artifact |
-| ---: | --- | --- |
-| [21](curriculum/phase-3-full-stack-systems.md#day-21-http-and-api-contracts) | HTTP and APIs | API contract |
-| [22](curriculum/phase-3-full-stack-systems.md#day-22-fastapi-and-boundary-validation) | FastAPI | Validated API routes |
-| [23](curriculum/phase-3-full-stack-systems.md#day-23-relational-data-and-sql) | SQL fundamentals | Relational schema |
-| [24](curriculum/phase-3-full-stack-systems.md#day-24-postgresql-migrations-and-transactions) | PostgreSQL | Migrated database |
-| [25](curriculum/phase-3-full-stack-systems.md#day-25-data-access-and-integration-tests) | Persistence layer | Tested repository layer |
-| [26](curriculum/phase-3-full-stack-systems.md#day-26-authentication-and-web-security) | Auth and security | Threat model and protected route |
-| [27](curriculum/phase-3-full-stack-systems.md#day-27-typescript-and-react-foundations) | TypeScript and React | Typed document UI |
-| [28](curriculum/phase-3-full-stack-systems.md#day-28-full-stack-integration) | Client/server integration | Accessible end-to-end flow |
-| [29](curriculum/phase-3-full-stack-systems.md#day-29-caching-queues-and-background-work) | Async work | Idempotent ingestion job |
-| [30](curriculum/phase-3-full-stack-systems.md#day-30-milestone-production-shaped-crud) | Milestone: full stack | Working document application |
+- [ ] [Day 21 — Start tracking with Git](curriculum/phase-3-git-github-codex.md#day-21-start-tracking-with-git) — proof:
+- [ ] [Day 22 — Make useful commits](curriculum/phase-3-git-github-codex.md#day-22-make-useful-commits) — proof:
+- [ ] [Day 23 — Ignore secrets and generated files](curriculum/phase-3-git-github-codex.md#day-23-ignore-secrets-and-generated-files) — proof:
+- [ ] [Day 24 — Work on a branch](curriculum/phase-3-git-github-codex.md#day-24-work-on-a-branch) — proof:
+- [ ] [Day 25 — Resolve a conflict and undo safely](curriculum/phase-3-git-github-codex.md#day-25-resolve-a-conflict-and-undo-safely) — proof:
+- [ ] [Day 26 — Connect Git to GitHub](curriculum/phase-3-git-github-codex.md#day-26-connect-git-to-github) — proof:
+- [ ] [Day 27 — Use issues and pull requests](curriculum/phase-3-git-github-codex.md#day-27-use-issues-and-pull-requests) — proof:
+- [ ] [Day 28 — Give a coding assistant a small task](curriculum/phase-3-git-github-codex.md#day-28-give-a-coding-assistant-a-small-task) — proof:
+- [ ] [Day 29 — Keep Codex context small and useful](curriculum/phase-3-git-github-codex.md#day-29-keep-codex-context-small-and-useful) — proof:
+- [ ] [Day 30 — Checkpoint: complete an assisted pull request](curriculum/phase-3-git-github-codex.md#day-30-checkpoint-complete-an-assisted-pull-request) — proof:
 
-## Phase 4 — Applied AI systems
+## Phase 4: Python, uv, and ML basics
 
-| Day | Topic | Production artifact |
-| ---: | --- | --- |
-| [31](curriculum/phase-4-applied-ai.md#day-31-machine-learning-mental-models) | ML mental models | Baseline and metric note |
-| [32](curriculum/phase-4-applied-ai.md#day-32-how-llms-behave) | LLM fundamentals | Model-behavior experiment |
-| [33](curriculum/phase-4-applied-ai.md#day-33-model-apis-and-structured-output) | Model APIs | Provider adapter |
-| [34](curriculum/phase-4-applied-ai.md#day-34-prompt-design-as-code) | Prompt engineering | Versioned prompt and tests |
-| [35](curriculum/phase-4-applied-ai.md#day-35-tool-calling-and-control-flow) | Tools and workflows | Validated tool loop |
-| [36](curriculum/phase-4-applied-ai.md#day-36-embeddings-and-vector-search) | Embeddings | Retrieval benchmark |
-| [37](curriculum/phase-4-applied-ai.md#day-37-build-a-rag-pipeline) | RAG | Grounded answer pipeline |
-| [38](curriculum/phase-4-applied-ai.md#day-38-agents-workflows-and-state) | Agent design | Explicit workflow state machine |
-| [39](curriculum/phase-4-applied-ai.md#day-39-repository-aware-coding-agents) | Coding-agent workflow | Repository instructions and review |
-| [40](curriculum/phase-4-applied-ai.md#day-40-milestone-source-citing-assistant) | Milestone: AI assistant | End-to-end cited answers |
+- [ ] [Day 31 — Create a Python project with uv](curriculum/phase-4-python-uv-ml.md#day-31-create-a-python-project-with-uv) — proof:
+- [ ] [Day 32 — Practice Python values and functions](curriculum/phase-4-python-uv-ml.md#day-32-practice-python-values-and-functions) — proof:
+- [ ] [Day 33 — Use lists, dictionaries, and loops](curriculum/phase-4-python-uv-ml.md#day-33-use-lists-dictionaries-and-loops) — proof:
+- [ ] [Day 34 — Read CSV and JSON data](curriculum/phase-4-python-uv-ml.md#day-34-read-csv-and-json-data) — proof:
+- [ ] [Day 35 — Add useful errors and logs](curriculum/phase-4-python-uv-ml.md#day-35-add-useful-errors-and-logs) — proof:
+- [ ] [Day 36 — Write basic tests with pytest](curriculum/phase-4-python-uv-ml.md#day-36-write-basic-tests-with-pytest) — proof:
+- [ ] [Day 37 — Learn features, labels, and data splits](curriculum/phase-4-python-uv-ml.md#day-37-learn-features-labels-and-data-splits) — proof:
+- [ ] [Day 38 — Train and evaluate a text classifier](curriculum/phase-4-python-uv-ml.md#day-38-train-and-evaluate-a-text-classifier) — proof:
+- [ ] [Day 39 — Save the model and predict from the CLI](curriculum/phase-4-python-uv-ml.md#day-39-save-the-model-and-predict-from-the-cli) — proof:
+- [ ] [Day 40 — Checkpoint: serve predictions with FastAPI](curriculum/phase-4-python-uv-ml.md#day-40-checkpoint-serve-predictions-with-fastapi) — proof:
 
-## Phase 5 — Production readiness
+## Phase 5: PM2, Docker, and Azure
 
-| Day | Topic | Production artifact |
-| ---: | --- | --- |
-| [41](curriculum/phase-5-production-readiness.md#day-41-evaluation-strategy-and-datasets) | Evaluation strategy | Versioned golden dataset |
-| [42](curriculum/phase-5-production-readiness.md#day-42-automated-ai-evaluations) | Automated evals | Repeatable evaluation report |
-| [43](curriculum/phase-5-production-readiness.md#day-43-safety-hallucination-and-prompt-injection) | AI safety | Adversarial test suite |
-| [44](curriculum/phase-5-production-readiness.md#day-44-observability-for-ai-systems) | Observability | Traceable request path |
-| [45](curriculum/phase-5-production-readiness.md#day-45-latency-reliability-and-cost) | Performance and cost | Before/after benchmark |
-| [46](curriculum/phase-5-production-readiness.md#day-46-security-privacy-and-data-governance) | Security and privacy | Data-flow threat model |
-| [47](curriculum/phase-5-production-readiness.md#day-47-production-docker-images) | Docker images | Hardened application images |
-| [48](curriculum/phase-5-production-readiness.md#day-48-local-systems-with-docker-compose) | Docker Compose | Reproducible local stack |
-| [49](curriculum/phase-5-production-readiness.md#day-49-cloud-and-deployment-architecture) | Cloud architecture | Deployment decision record |
-| [50](curriculum/phase-5-production-readiness.md#day-50-milestone-release-candidate) | Milestone: release candidate | Tagged, evaluated container stack |
+- [ ] [Day 41 — Run the API as a Linux process](curriculum/phase-5-docker-azure.md#day-41-run-the-api-as-a-linux-process) — proof:
+- [ ] [Day 42 — Keep the API running with PM2](curriculum/phase-5-docker-azure.md#day-42-keep-the-api-running-with-pm2) — proof:
+- [ ] [Day 43 — Understand images and containers](curriculum/phase-5-docker-azure.md#day-43-understand-images-and-containers) — proof:
+- [ ] [Day 44 — Write a small Dockerfile](curriculum/phase-5-docker-azure.md#day-44-write-a-small-dockerfile) — proof:
+- [ ] [Day 45 — Build, run, inspect, and log a container](curriculum/phase-5-docker-azure.md#day-45-build-run-inspect-and-log-a-container) — proof:
+- [ ] [Day 46 — Manage the app with Docker Compose](curriculum/phase-5-docker-azure.md#day-46-manage-the-app-with-docker-compose) — proof:
+- [ ] [Day 47 — Understand Azure resources and cost](curriculum/phase-5-docker-azure.md#day-47-understand-azure-resources-and-cost) — proof:
+- [ ] [Day 48 — Create a small Azure VM](curriculum/phase-5-docker-azure.md#day-48-create-a-small-azure-vm) — proof:
+- [ ] [Day 49 — Inspect and prepare the VM over SSH](curriculum/phase-5-docker-azure.md#day-49-inspect-and-prepare-the-vm-over-ssh) — proof:
+- [ ] [Day 50 — Checkpoint: deploy the container to Azure](curriculum/phase-5-docker-azure.md#day-50-checkpoint-deploy-the-container-to-azure) — proof:
 
-## Phase 6 — Delivery and operations
+## Phase 6: CI/CD and operations
 
-| Day | Topic | Production artifact |
-| ---: | --- | --- |
-| [51](curriculum/phase-6-delivery-operations.md#day-51-continuous-integration-with-github-actions) | CI fundamentals | Required CI workflow |
-| [52](curriculum/phase-6-delivery-operations.md#day-52-fast-trustworthy-and-secure-ci) | CI hardening | Cached, least-privilege checks |
-| [53](curriculum/phase-6-delivery-operations.md#day-53-continuous-delivery-and-rollbacks) | CD design | Staging deployment workflow |
-| [54](curriculum/phase-6-delivery-operations.md#day-54-deploy-to-staging) | Cloud deployment | Live HTTPS environment |
-| [55](curriculum/phase-6-delivery-operations.md#day-55-slos-alerts-and-runbooks) | Reliability targets | SLOs and runbook |
-| [56](curriculum/phase-6-delivery-operations.md#day-56-failure-drills-backups-and-recovery) | Resilience | Recovery drill report |
-| [57](curriculum/phase-6-delivery-operations.md#day-57-load-testing-and-capacity) | Load and capacity | Capacity envelope |
-| [58](curriculum/phase-6-delivery-operations.md#day-58-releases-documentation-and-decisions) | Release engineering | Changelog and release notes |
-| [59](curriculum/phase-6-delivery-operations.md#day-59-production-readiness-review) | Final review | Signed readiness checklist |
-| [60](curriculum/phase-6-delivery-operations.md#day-60-launch-teach-and-plan-the-next-90-days) | Launch | Public case study and roadmap |
+- [ ] [Day 51 — Understand a GitHub Actions workflow](curriculum/phase-6-delivery-operations.md#day-51-understand-a-github-actions-workflow) — proof:
+- [ ] [Day 52 — Run tests in CI](curriculum/phase-6-delivery-operations.md#day-52-run-tests-in-ci) — proof:
+- [ ] [Day 53 — Build a Docker image in CI](curriculum/phase-6-delivery-operations.md#day-53-build-a-docker-image-in-ci) — proof:
+- [ ] [Day 54 — Publish an image to a registry](curriculum/phase-6-delivery-operations.md#day-54-publish-an-image-to-a-registry) — proof:
+- [ ] [Day 55 — Deploy a known image safely](curriculum/phase-6-delivery-operations.md#day-55-deploy-a-known-image-safely) — proof:
+- [ ] [Day 56 — Secure the VM and secrets](curriculum/phase-6-delivery-operations.md#day-56-secure-the-vm-and-secrets) — proof:
+- [ ] [Day 57 — Monitor the running service](curriculum/phase-6-delivery-operations.md#day-57-monitor-the-running-service) — proof:
+- [ ] [Day 58 — Back up and restore the small app](curriculum/phase-6-delivery-operations.md#day-58-back-up-and-restore-the-small-app) — proof:
+- [ ] [Day 59 — Troubleshoot one failure end to end](curriculum/phase-6-delivery-operations.md#day-59-troubleshoot-one-failure-end-to-end) — proof:
+- [ ] [Day 60 — Final checkpoint: redeploy and explain everything](curriculum/phase-6-delivery-operations.md#day-60-final-checkpoint-redeploy-and-explain-everything) — proof:
 
-## When you fall behind
+## Simple weekly review
 
-Do not compress several build days into passive watching. Keep the order, reduce the optional work, and continue when the required artifact passes its acceptance check. The schedule is a pacing device—not the learning objective.
+At the end of each 10-day phase, answer only these questions:
 
+1. Which commands can I run without copying them?
+2. Which error did I learn to diagnose?
+3. What proof did I save?
+4. What must I repeat before continuing?

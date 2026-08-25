@@ -1,115 +1,77 @@
 # acAIberry Foundations Learning Path
 
-> A project-first, 60-day path from a blank terminal to a deployed, observable AI application.
+> A simple 60-day path to become comfortable building, deploying, and debugging a small AI/ML service.
 
-AI engineering is more than calling a model API. A production AI engineer must be able to navigate Linux, collaborate with Git, write maintainable software, build APIs and interfaces, work with data, evaluate model behavior, package services, automate delivery, and operate what they ship. This learning path connects those skills through one continuous capstone instead of teaching them as isolated tutorials.
+This path focuses on the tools an AI/ML engineer uses every day: Linux commands, files, logs, errors, processes, networking, SSH, Git and GitHub, Python with `uv`, basic machine learning, Docker, GitHub Actions, and an Azure virtual machine.
+
+It intentionally avoids advanced RAG, agents, Kubernetes, distributed systems, and complicated frontend work. Learn those after these foundations feel normal.
 
 ## What you will build
 
-Over 60 days, you will build **Grounded**: a source-citing AI knowledge assistant for a document collection you choose. It begins as a command-line utility and grows into a full-stack service with:
+You will build one connected project: **Ticket Classifier**.
 
-- a typed Python ingestion pipeline;
-- a FastAPI backend and React/TypeScript interface;
-- PostgreSQL persistence and vector retrieval;
-- model-provider integration, structured outputs, tools, and RAG;
-- automated tests, evaluations, security checks, and observability;
-- Docker-based local environments and GitHub Actions CI/CD;
-- a staged cloud deployment with monitoring, rollback, and a runbook.
+It starts as a folder of sample support tickets. You will inspect the files with Linux commands, track them with Git, train a small scikit-learn text classifier, expose it through FastAPI, run it with PM2, package it with Docker, and deploy it to an Azure VM. The same application supplies the logs, errors, processes, ports, containers, and deployment problems used throughout the course.
 
-The model provider and cloud platform are replaceable. The engineering practices are not.
+No paid model API is required.
 
-## Who this is for
+## How to follow the path
 
-This path is designed for early-career developers, self-taught programmers, and software engineers moving into applied AI. You should be comfortable using a computer and reading basic code. Prior Linux, cloud, or machine-learning experience is not required.
+Plan for **60–90 focused minutes per day**.
 
-Plan for **2–3 focused hours per day**, six days per week. If a day takes longer, split it. Understanding and a working artifact matter more than the calendar.
+Each day has only four parts:
 
-## The 60-day map
+- **Goal:** the one idea to understand.
+- **Commands:** the small command set to practice.
+- **Task:** one change or investigation connected to Ticket Classifier.
+- **Done when:** clear evidence that the task worked.
 
-| Phase | Days | Focus | Milestone |
+Use [CURRICULUM.md](CURRICULUM.md) as your progress tracker. Check one box only after completing the task and saving its proof in a commit or [daily log](templates/daily-log.md).
+
+If a day is difficult, repeat it. Do not skip the command-line exercises by asking an AI tool to do them for you.
+
+## The six phases
+
+| Phase | Days | Focus | Checkpoint |
 | --- | ---: | --- | --- |
-| [1. Developer foundations](curriculum/phase-1-developer-foundations.md) | 1–10 | Linux, shell, networking, Git, GitHub, AI coding tools | A tested environment-diagnostics CLI |
-| [2. Python engineering](curriculum/phase-2-python-engineering.md) | 11–20 | Python, types, testing, tooling, configuration, packages | A reliable document-ingestion package |
-| [3. Full-stack systems](curriculum/phase-3-full-stack-systems.md) | 21–30 | HTTP, FastAPI, SQL, PostgreSQL, auth, React, async work | A database-backed web application |
-| [4. Applied AI systems](curriculum/phase-4-applied-ai.md) | 31–40 | ML/LLM concepts, APIs, prompting, tools, embeddings, RAG | A source-citing AI assistant |
-| [5. Production readiness](curriculum/phase-5-production-readiness.md) | 41–50 | Evals, safety, observability, performance, Docker, cloud | A measured, containerized release candidate |
-| [6. Delivery and operations](curriculum/phase-6-delivery-operations.md) | 51–60 | CI/CD, deployment, SLOs, resilience, load, releases | A deployed capstone and engineering case study |
+| [1. Linux essentials](curriculum/phase-1-linux-essentials.md) | 1–10 | Files, Nano, grep, pipes, processes, disk and memory | Write a system-report script |
+| [2. Logs, errors, networks, and SSH](curriculum/phase-2-logs-network-ssh.md) | 11–20 | Exit codes, logs, services, ports, HTTP, SSH | Diagnose a small local server |
+| [3. Git, GitHub, and coding assistants](curriculum/phase-3-git-github-codex.md) | 21–30 | Commits, branches, pull requests, Codex context | Complete one reviewed AI-assisted PR |
+| [4. Python, uv, and ML basics](curriculum/phase-4-python-uv-ml.md) | 31–40 | Python project setup, data, tests, classification, API | Serve a trained classifier locally |
+| [5. PM2, Docker, and Azure](curriculum/phase-5-docker-azure.md) | 41–50 | Process management, containers, Compose, cloud resources | Run the containerized API on an Azure VM |
+| [6. CI/CD and operations](curriculum/phase-6-delivery-operations.md) | 51–60 | GitHub Actions, image delivery, security, monitoring, recovery | Redeploy and troubleshoot from the runbook |
 
-See the [complete curriculum](CURRICULUM.md) for the day-by-day index.
+## What you need
 
-## How each day works
+- A Linux machine, Linux VM, WSL, or other Ubuntu-like shell
+- A GitHub account
+- An editor; Nano is taught and VS Code is optional
+- Python 3.11 or newer and `uv`
+- Docker for the container phase
+- An Azure account for Days 47–60
+- Codex, Claude Code, or another coding assistant for Days 28–30
 
-Every day has four parts:
+Azure resources can cost money. Create the smallest suitable VM, configure a budget alert, use synthetic data, and delete the resource group when finished. If Azure is unavailable, use any Ubuntu VM and keep the same SSH and Docker tasks.
 
-1. **Learn** — study a small set of concepts from primary documentation or a high-quality course.
-2. **Build** — apply the concept to the capstone or a focused exercise.
-3. **Ship** — leave evidence: a commit, test, diagram, benchmark, decision record, or deployment.
-4. **Reflect** — write three lines: what changed, what failed, and what you would do differently.
+## Ground rules
 
-Use the [daily log template](templates/daily-log.md). Keep changes small enough to review. End milestone days by tagging the repository (`day-10`, `day-20`, and so on).
+1. Type foundational commands yourself and explain their output.
+2. Never commit passwords, API keys, private SSH keys, or `.env` files.
+3. Read the error before searching for a fix.
+4. Change one thing at a time, then verify it.
+5. Use AI assistants for bounded help; inspect their diff and run the checks yourself.
+6. Prefer a small working project over a large unfinished architecture.
 
-## Production rules from day one
+## Completion means you can
 
-- Never commit credentials. Use environment variables, a secret manager, and a checked-in `.env.example`.
-- Prefer small, reviewable commits and pull requests, even when working alone.
-- Treat generated code as untrusted until you can explain it, test it, and inspect its diff.
-- Validate data at every system boundary. Time out network calls and handle failure explicitly.
-- Add a test when fixing a bug. Record important architectural choices in an ADR.
-- Measure model quality with a versioned evaluation set; do not judge it only by a few demos.
-- Keep development reproducible: lock dependencies, automate checks, and document commands.
-- Optimize only after measuring latency, quality, and cost.
+- move around Linux, edit files, search text, and inspect disk, memory, ports, and processes;
+- find a useful error in logs and explain the likely cause;
+- connect to a VM with SSH and identify its Azure resources;
+- make a Git branch, commit, pull request, merge, and recover from a simple mistake;
+- create a Python project with `uv`, test it, and train a basic classifier;
+- run and inspect the API with PM2 and Docker;
+- use GitHub Actions to test and build the project;
+- deploy the same container to Azure and troubleshoot it using a written checklist;
+- give Codex or another coding assistant only the context needed for a small task.
 
-## Set up your learning repository
-
-Create a separate repository for your capstone so this curriculum stays clean:
-
-```bash
-mkdir grounded-ai && cd grounded-ai
-git init
-mkdir -p apps/api apps/web packages/ingestion tests docs/adr
-touch README.md .gitignore .env.example
-git add . && git commit -m "chore: initialize capstone"
-```
-
-Choose supported versions of Python, Node.js, Git, and Docker for your operating system. Record the versions in the capstone README instead of relying on whatever happens to be installed globally.
-
-## Using AI coding assistants well
-
-Codex, Claude Code, and similar tools are part of the curriculum, but they are not substitutes for the fundamentals. Use them to explore an unfamiliar repository, propose a plan, implement a bounded change, write tests, or review a diff. You remain responsible for requirements, verification, security, and the final decision.
-
-Start with the [AI-assisted development guide](guides/ai-assisted-development.md). It includes a reusable task prompt, review checklist, and links to the official Codex and Claude Code documentation.
-
-## Completion standard
-
-You have completed the path when you can demonstrate all of the following without hiding behind a tutorial:
-
-- explain the request path from browser to API, database, retrieval system, model, and back;
-- reproduce the application locally from a fresh clone with documented commands;
-- make a change through a branch, tested pull request, and automated deployment;
-- show an evaluation report and explain where the AI system fails;
-- find a production problem using logs, metrics, and traces;
-- restore or roll back the service using a written runbook;
-- explain the security, privacy, latency, quality, and cost tradeoffs you made.
-
-The detailed acceptance criteria are in the [capstone brief](projects/capstone.md).
-
-## Repository guide
-
-```text
-.
-├── curriculum/       # Six detailed 10-day phases
-├── guides/           # Working practices used throughout the path
-├── projects/         # Capstone specification and checkpoints
-├── resources/        # Curated reference library
-├── templates/        # Daily logs, ADRs, and incident reviews
-└── scripts/          # Dependency-free curriculum validation
-```
-
-## Scope
-
-This is an **applied AI engineering foundation**, not a complete data-science or model-training degree. It teaches enough ML theory to reason about data, metrics, embeddings, and LLM behavior, then concentrates on building dependable products around models. Distributed training, advanced mathematics, CUDA kernels, and research-level model architecture are valuable next steps, but intentionally outside these 60 days.
-
-## Contributing
-
-Corrections and resource improvements are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Prefer stable, accessible, primary sources and explain which learning objective a new resource improves.
+See the [project brief](projects/capstone.md), [AI-assistant guide](guides/ai-assisted-development.md), and [resource shelf](resources/README.md) when needed.
 
