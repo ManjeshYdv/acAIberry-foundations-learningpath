@@ -1,6 +1,6 @@
 # Student Guide
 
-This repository contains the lessons. Your practical work belongs in the included [`ticket-classifier/`](ticket-classifier/) directory.
+This repository contains the lessons. Your practical work belongs in the included [`ticket-classifier/`](ticket-classifier/) directory. Its README shows exactly what you build, which files should exist at each checkpoint, and which commands must work.
 
 Choose one setup mode before starting.
 
@@ -97,7 +97,7 @@ cd ..
 
 ### 1. Read only today's lesson
 
-Open [CURRICULUM.md](CURRICULUM.md), select the next unchecked day, and follow its link.
+Open [CURRICULUM.md](CURRICULUM.md), select the next unchecked day, and follow its link. Use the [`ticket-classifier` workspace guide](ticket-classifier/README.md) to see how today's task fits into the final application.
 
 ### 2. Create a daily log
 

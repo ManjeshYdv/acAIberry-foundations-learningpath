@@ -8,11 +8,11 @@ The goal is not advanced machine learning. It is understanding the simplest comp
 
 **Goal:** Let the project declare and reproduce its Python version and dependencies.
 
-**Commands:** `uv init`, `uv python pin`, `uv add`, `uv run`, `uv sync`, `uv lock`.
+**Commands:** `cd ticket-classifier`, `uv init --package .`, `uv python pin`, `uv run`, `uv sync`.
 
-**Task:** Initialize the existing project with `uv`, pin a supported Python version, and run a simple `main.py` through `uv run`. Commit `pyproject.toml`, `.python-version`, and `uv.lock` when present; do not commit `.venv`.
+**Task:** Enter `ticket-classifier`, initialize it as a packaged `uv` project, pin a supported Python version, and run Python through `uv`. Commit `pyproject.toml`, `.python-version`, `src/ticket_classifier/__init__.py`, and `uv.lock` when present; do not commit `.venv`.
 
-**Done when:** Another clean environment can run `uv sync` and `uv run python main.py`.
+**Done when:** Another clean environment can run `cd ticket-classifier`, `uv sync`, and `uv run python -c "import ticket_classifier"`.
 
 **Resource:** [uv project guide](https://docs.astral.sh/uv/guides/projects/)
 
@@ -22,7 +22,7 @@ The goal is not advanced machine learning. It is understanding the simplest comp
 
 **Commands:** `uv run python`, `python -m`.
 
-**Task:** Create `src/ticket_classifier/text.py` with functions that clean whitespace, reject empty text, and count words. Call them from `main.py` with three sample tickets.
+**Task:** Create `src/ticket_classifier/text.py` with functions that clean whitespace, reject empty text, and count words. Open Python through `uv run python`, import the functions, and call them with three sample tickets.
 
 **Done when:** You can explain each argument, return value, condition, and type without the assistant.
 
@@ -34,9 +34,9 @@ The goal is not advanced machine learning. It is understanding the simplest comp
 
 **Commands:** Python through `uv run`.
 
-**Task:** Represent each ticket as a dictionary with `text` and `label`. Store several dictionaries in a list, loop over them, and count labels in a dictionary.
+**Task:** Create `src/ticket_classifier/data.py`. Represent each ticket as a dictionary with `text` and `label`, store several dictionaries in a list, loop over them, and count labels in a dictionary.
 
-**Done when:** Running the module prints the total ticket count and count for each label.
+**Done when:** `uv run python -m ticket_classifier.data` prints the total ticket count and count for each label.
 
 **Resource:** [Python data structures](https://docs.python.org/3/tutorial/datastructures.html)
 
@@ -46,7 +46,7 @@ The goal is not advanced machine learning. It is understanding the simplest comp
 
 **Commands:** `uv add pandas`, `head`, `wc -l`, `uv run python`.
 
-**Task:** Create `data/tickets.csv` with at least 30 synthetic tickets divided among `billing`, `account`, and `technical`. Read it with pandas, show column names, missing values, duplicates, and label counts. Export the summary as JSON.
+**Task:** Create `data/tickets.csv` with at least 30 synthetic tickets divided among `billing`, `account`, and `technical`. Extend `data.py` to read it with pandas, validate required columns, and show missing values, duplicates, and label counts. Export the summary as JSON.
 
 **Done when:** The script rejects missing required columns and your note explains rows, columns, labels, missing values, and duplicates.
 
@@ -116,9 +116,9 @@ The goal is not advanced machine learning. It is understanding the simplest comp
 
 **Goal:** Put a small HTTP boundary around the same tested prediction function.
 
-**Commands:** `uv add fastapi uvicorn`, `uv run uvicorn`, `curl`.
+**Commands:** `uv add fastapi uvicorn`, `uv add --dev httpx`, `uv run uvicorn ticket_classifier.api:app`, `curl`.
 
-**Task:** Add `GET /health` and `POST /predict`. Validate that text is present and bounded, call the saved classifier, and return category plus a safe confidence value if available. Add API tests using FastAPI's test client.
+**Task:** Create `src/ticket_classifier/api.py` with `GET /health` and `POST /predict`. Validate that text is present and bounded, call the saved classifier, and return the category. Add API tests using FastAPI's test client.
 
 **Done when:** `curl` receives `200` for a valid prediction, invalid input receives a useful `4xx`, tests pass, and the terminal shows a request log.
 

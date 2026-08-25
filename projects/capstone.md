@@ -2,6 +2,8 @@
 
 Ticket Classifier is a small service that labels synthetic support messages as `billing`, `account`, or `technical`. It exists to connect the fundamentals—not to demonstrate advanced machine learning.
 
+The student's exact phase-by-phase files, commands, endpoints, and expected outputs are listed in the [`ticket-classifier` workspace guide](../ticket-classifier/README.md).
+
 ## The connected path
 
 ```mermaid
@@ -25,31 +27,39 @@ The project stays the same while the way you work with it improves:
 - Days 41–50: manage the process, containerize it, understand Azure resources, and deploy to a VM.
 - Days 51–60: test/build it in GitHub Actions, publish a known image, monitor it, and recover it.
 
-## Minimum project shape
+## Final repository shape
 
 ```text
-ticket-classifier/
-├── .github/workflows/ci.yml
-├── data/tickets.csv
-├── src/ticket_classifier/
-│   ├── api.py
-│   ├── data.py
-│   ├── predict.py
-│   ├── text.py
-│   └── train.py
-├── tests/
-├── scripts/
-│   ├── check-service.sh
-│   └── system-report.sh
-├── notes/
-├── .env.example
-├── .gitignore
-├── AGENTS.md
-├── compose.yaml
-├── Dockerfile
-├── pyproject.toml
-├── uv.lock
-└── README.md
+acAIberry-foundations-learningpath/
+├── .github/
+│   └── workflows/
+│       ├── content-quality.yml
+│       └── student-ci.yml
+├── CURRICULUM.md
+└── ticket-classifier/
+    ├── data/tickets.csv
+    ├── src/ticket_classifier/
+    │   ├── __init__.py
+    │   ├── api.py
+    │   ├── data.py
+    │   ├── predict.py
+    │   ├── text.py
+    │   └── train.py
+    ├── tests/
+    ├── scripts/
+    │   ├── check-service.sh
+    │   └── system-report.sh
+    ├── notes/
+    ├── .dockerignore
+    ├── .env.example
+    ├── .gitignore
+    ├── AGENTS.md
+    ├── compose.yaml
+    ├── Dockerfile
+    ├── ecosystem.config.cjs
+    ├── pyproject.toml
+    ├── uv.lock
+    └── README.md
 ```
 
 Create files only when their day arrives. Empty scaffolding makes the project look bigger without making it clearer.
@@ -92,4 +102,3 @@ At Day 60, demonstrate this sequence:
 4. Explain how the CSV became a model and how the model became a container.
 5. Introduce or describe one known failure and follow the troubleshooting checklist.
 6. Remove the Azure resource group when the learning environment is no longer needed.
-

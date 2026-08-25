@@ -10,7 +10,7 @@ Keep automation readable. A five-step workflow you understand is better than a c
 
 **Commands/concepts:** `.github/workflows`, `name`, `on`, `jobs`, `runs-on`, `steps`, `uses`, `run`.
 
-**Task:** Read a minimal workflow that checks out the repository and prints Python/uv versions. Predict when it runs and what machine executes it, then add it on a branch.
+**Task:** From the course-repository root, create `.github/workflows/student-ci.yml`. Start with a minimal workflow that checks out the repository and prints Python/uv versions. Predict when it runs and what machine executes it, then add it on a branch.
 
 **Done when:** The pull request shows one successful check and you can point to its trigger, job, runner, and steps.
 

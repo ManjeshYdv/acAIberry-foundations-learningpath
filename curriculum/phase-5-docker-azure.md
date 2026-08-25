@@ -22,7 +22,7 @@ Keep the service small. PM2 teaches process management first; Docker then replac
 
 **Commands:** `pm2 start`, `pm2 list`, `pm2 show`, `pm2 logs`, `pm2 restart`, `pm2 stop`, `pm2 delete`.
 
-**Task:** Install PM2 from its official guide, then manage the `uv run uvicorn ...` command as `ticket-api`. Stop it, restart it, read its logs, and inspect its PID and restart count.
+**Task:** Install PM2 from its official guide. Create `ecosystem.config.cjs` for `uv run uvicorn ticket_classifier.api:app --host 127.0.0.1 --port 8000`, then use `pm2 start ecosystem.config.cjs`. Stop it, restart it, read its logs, and inspect its PID and restart count.
 
 **Done when:** PM2 reports the process online, `/health` works, logs are readable, and you can explain that PM2 manages a process but does not create a container.
 
@@ -118,7 +118,7 @@ Keep the service small. PM2 teaches process management first; Docker then replac
 
 **Commands:** `git clone` or `git pull --ff-only`, `docker compose up -d`, `docker compose ps`, `docker compose logs`, `ssh -L`.
 
-**Task:** Deploy the project on the VM, build/start it with Compose, and bind the published API port to the VM's loopback interface. From your machine, create an SSH tunnel to port `8000`, then call `/health` and `/predict`. Reboot the VM and verify the restart policy.
+**Task:** Clone the course fork on the VM, enter its `ticket-classifier` directory, build/start it with Compose, and bind the published API port to the VM's loopback interface. From your machine, create an SSH tunnel to port `8000`, then call `/health` and `/predict`. Reboot the VM and verify the restart policy.
 
 **Done when:** The API works through the tunnel, the application is not directly exposed to the internet, logs show the request, and `notes/azure-deploy.md` contains the repeatable commands.
 
