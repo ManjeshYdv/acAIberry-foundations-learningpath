@@ -8,9 +8,9 @@ Git now starts tracking the exact project you used for Linux and troubleshooting
 
 **Goal:** Understand the working tree, repository, and Git status.
 
-**Commands:** `git init`, `git status`, `git diff`.
+**Commands:** `git init`, `git rev-parse --show-toplevel`, `git status`, `git diff`.
 
-**Task:** Initialize Git inside `ticket-classifier`. Change one note, inspect the unstaged diff, and run `git status` before doing anything else.
+**Task:** From the course-repository root, use `git rev-parse --show-toplevel` to confirm that the fork/clone is already a repository. Do **not** run `git init` inside `ticket-classifier`; that would create an unwanted nested repository. Change one note, inspect the unstaged diff, and run `git status`.
 
 **Done when:** You can identify untracked and modified files and explain that Git has not saved either one yet.
 
@@ -22,7 +22,7 @@ Git now starts tracking the exact project you used for Linux and troubleshooting
 
 **Commands:** `git add`, `git diff --staged`, `git commit`, `git log --oneline`, `git show`.
 
-**Task:** Stage the system-report script and its documentation, inspect the staged diff, and commit them. Make a separate commit for the troubleshooting note.
+**Task:** Make one small improvement to the system-report script and one separate documentation correction. Stage, inspect, and commit each logical change separately.
 
 **Done when:** `git log --oneline` shows two focused commits and `git show` explains each without unrelated changes.
 
@@ -34,7 +34,7 @@ Git now starts tracking the exact project you used for Linux and troubleshooting
 
 **Commands:** `nano .gitignore`, `git check-ignore -v`, `git status`.
 
-**Task:** Ignore `.env`, private keys, Python cache, virtual environments, log files, and trained model artifacts. Keep `.env.example` and small synthetic data tracked. Test each rule with `git check-ignore -v`.
+**Task:** Inspect the supplied root and `ticket-classifier/.gitignore` files. Confirm that `.env`, private keys, Python cache, virtual environments, logs, and trained model artifacts are ignored while `.env.example` and synthetic data can be tracked. Add any missing safe rule and test it with `git check-ignore -v`.
 
 **Done when:** `git status` contains no log, secret, private key, cache, or virtual-environment file.
 
@@ -46,7 +46,7 @@ Git now starts tracking the exact project you used for Linux and troubleshooting
 
 **Commands:** `git switch -c`, `git branch`, `git diff main...HEAD`, `git switch`, `git merge`.
 
-**Task:** Create `docs/improve-readme`, add a short troubleshooting section, review the branch diff, switch to `main`, and merge it.
+**Task:** From your current `phase-3` branch, create `practice-readme`, add a short troubleshooting section, review the branch diff, switch back to `phase-3`, and merge it. Keep `main` unchanged until the Day 30 checkpoint review.
 
 **Done when:** The change is on `main`, the branch history is understandable, and the working tree is clean.
 
@@ -70,7 +70,7 @@ Git now starts tracking the exact project you used for Linux and troubleshooting
 
 **Commands:** `git remote -v`, `git push -u origin main`, `git fetch`, `git pull --ff-only`, `git clone`.
 
-**Task:** Create an empty GitHub repository, add it as `origin`, push `main`, and clone it into a separate temporary directory to prove the remote contains your work.
+**Task:** Inspect the `origin` and `upstream` configured during onboarding. Fetch both, push the current phase branch, and clone your fork into a separate temporary directory to prove the remote contains your work. Self-study students who want tracking can switch to the fork workflow now.
 
 **Done when:** The GitHub page shows the commits and the fresh clone contains the same files without copied secrets.
 

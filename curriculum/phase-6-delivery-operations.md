@@ -22,7 +22,7 @@ Keep automation readable. A five-step workflow you understand is better than a c
 
 **Commands:** `uv sync --locked`, `uv run pytest -q`; GitHub Actions logs.
 
-**Task:** Extend the workflow to install `uv`, restore dependencies from the lockfile, and run tests. Introduce one harmless failing assertion, inspect the red log, fix it, and watch the check turn green.
+**Task:** Extend the workflow to install `uv`, restore dependencies from the lockfile, and run tests with `ticket-classifier` as the working directory. Introduce one harmless failing assertion, inspect the red log, fix it, and watch the check turn green.
 
 **Done when:** GitHub blocks the broken change and the fixed commit passes without an API key or other secret.
 
@@ -34,7 +34,7 @@ Keep automation readable. A five-step workflow you understand is better than a c
 
 **Commands/concepts:** `docker build`, image tag, build log, Git commit SHA.
 
-**Task:** Add a second job that builds the Docker image, including the Dockerfile's training step, and tags it with the commit SHA. It does not publish yet.
+**Task:** Add a second job that builds from the `ticket-classifier` directory, including the Dockerfile's training step, and tags the image with the commit SHA. It does not publish yet.
 
 **Done when:** A deliberately broken Dockerfile fails the job; after fixing it, the build passes and the log shows the intended tag.
 

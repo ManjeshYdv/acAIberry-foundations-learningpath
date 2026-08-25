@@ -6,6 +6,17 @@ This path focuses on the tools an AI/ML engineer uses every day: Linux commands,
 
 It intentionally avoids advanced RAG, agents, Kubernetes, distributed systems, and complicated frontend work. Learn those after these foundations feel normal.
 
+## Start here
+
+Read the [Student Guide](STUDENT_GUIDE.md) before Day 1. It provides the exact commands for two supported modes:
+
+- **Clone for self-study:** learn locally without instructor tracking.
+- **Fork for tracked learning:** work in your own GitHub repository, push daily evidence, and submit one review every 10 days.
+
+The starter [`ticket-classifier/`](ticket-classifier/) directory is included in this repository. Students build inside it one day at a time; they should not create a separate repository for the capstone.
+
+Instructors should use the [Instructor Guide](INSTRUCTOR_GUIDE.md) for checkpoint reviews, the submission queue, and the progress rubric.
+
 ## What you will build
 
 You will build one connected project: **Ticket Classifier**.
@@ -25,7 +36,7 @@ Each day has only four parts:
 - **Task:** one change or investigation connected to Ticket Classifier.
 - **Done when:** clear evidence that the task worked.
 
-Use [CURRICULUM.md](CURRICULUM.md) as your progress tracker. Check one box only after completing the task and saving its proof in a commit or [daily log](templates/daily-log.md).
+Use [CURRICULUM.md](CURRICULUM.md) as your progress tracker. Check one box only after completing the task and saving its proof in a commit or [daily log](templates/daily-log.md). Exact daily Git commands are in the [Student Guide](STUDENT_GUIDE.md).
 
 If a day is difficult, repeat it. Do not skip the command-line exercises by asking an AI tool to do them for you.
 
@@ -74,4 +85,3 @@ Azure resources can cost money. Create the smallest suitable VM, configure a bud
 - give Codex or another coding assistant only the context needed for a small task.
 
 See the [project brief](projects/capstone.md), [AI-assistant guide](guides/ai-assisted-development.md), and [resource shelf](resources/README.md) when needed.
-

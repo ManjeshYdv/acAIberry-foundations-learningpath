@@ -18,10 +18,14 @@ LINK_PATTERN = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
 HEADING_PATTERN = re.compile(r"^#{1,6}\s+(.+?)\s*#*\s*$", re.MULTILINE)
 REQUIRED_FILES = (
     "README.md",
+    "STUDENT_GUIDE.md",
+    "INSTRUCTOR_GUIDE.md",
     "CURRICULUM.md",
     "CONTRIBUTING.md",
     "projects/capstone.md",
     "resources/README.md",
+    "ticket-classifier/README.md",
+    "ticket-classifier/.gitignore",
 )
 
 

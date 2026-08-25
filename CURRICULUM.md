@@ -1,6 +1,6 @@
 # 60-Day Progress Tracker
 
-This page is the single checklist for the course. Complete the linked task, replace `proof` with a commit/log/screenshot path, and then change `[ ]` to `[x]`.
+This page is the single checklist for the course. Complete the linked task, replace `proof` with a commit/log/screenshot path, and then change `[ ]` to `[x]`. Follow [STUDENT_GUIDE.md](STUDENT_GUIDE.md) for setup, daily commits, pushes, and checkpoint submissions.
 
 ## Phase 1: Linux essentials
 

@@ -1,0 +1,72 @@
+name: Phase checkpoint submission
+description: Submit a student-owned fork checkpoint for instructor review.
+title: "[Checkpoint] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit only links and non-sensitive evidence. Do not paste credentials, private keys, or private data.
+  - type: input
+    id: student
+    attributes:
+      label: Student
+      description: Your name and GitHub username.
+      placeholder: "Name (@username)"
+    validations:
+      required: true
+  - type: input
+    id: fork
+    attributes:
+      label: Student repository
+      description: URL of your fork or GitHub Classroom repository.
+      placeholder: "https://github.com/username/acAIberry-foundations-learningpath"
+    validations:
+      required: true
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Phase
+      options:
+        - "Phase 1 — Days 1–10"
+        - "Phase 2 — Days 11–20"
+        - "Phase 3 — Days 21–30"
+        - "Phase 4 — Days 31–40"
+        - "Phase 5 — Days 41–50"
+        - "Phase 6 — Days 51–60"
+    validations:
+      required: true
+  - type: input
+    id: pull_request
+    attributes:
+      label: Checkpoint pull request
+      description: URL of the phase pull request inside your repository.
+      placeholder: "https://github.com/username/repository/pull/1"
+    validations:
+      required: true
+  - type: textarea
+    id: demonstration
+    attributes:
+      label: What I can demonstrate
+      description: List the checkpoint commands or behavior you can explain live.
+    validations:
+      required: true
+  - type: textarea
+    id: blocker
+    attributes:
+      label: Blocker or question
+      description: Include the exact error and checks already attempted. Write "None" if there is no blocker.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: The tracker and proof paths are updated.
+          required: true
+        - label: The repository validator passes.
+          required: true
+        - label: I reviewed the staged diff and included no secrets or private data.
+          required: true
+        - label: I can explain the submitted work without relying on an AI-generated answer.
+          required: true

@@ -2,15 +2,15 @@
 
 **Days 1–10 · Result:** you can move around a Linux system, inspect files and processes, and produce a small system report without copying a long command blindly.
 
-Work inside one `ticket-classifier` folder. Save short notes under `notes/` and scripts under `scripts/` so every exercise contributes to the same project.
+Work inside the included `ticket-classifier` folder. Save short notes under `notes/` and scripts under `scripts/` so every exercise contributes to the same project. Complete the fork/clone steps in the [Student Guide](../STUDENT_GUIDE.md) first.
 
 ## Day 1: Open the terminal and create the project
 
 **Goal:** Know where you are, which user and machine you are using, and how to ask a command for help.
 
-**Commands:** `mkdir -p`, `whoami`, `hostname`, `date`, `uname -a`, `man`, `--help`, `clear`.
+**Commands:** `cd`, `mkdir -p`, `whoami`, `hostname`, `date`, `uname -a`, `man`, `--help`, `clear`.
 
-**Task:** Create `ticket-classifier` with `notes`, `scripts`, `data`, and `logs` directories. Run the system-information commands and save their output or a screenshot as the first daily proof. Read the help for `ls` instead of trying to memorize every option.
+**Task:** From the repository root, run `mkdir -p ticket-classifier/{notes,scripts,data,logs}`, then enter `ticket-classifier`. Run the system-information commands and save their output or a screenshot as the first daily proof. Read the help for `ls` instead of trying to memorize every option.
 
 **Done when:** You can explain user, host, operating system/kernel, current date, and how to exit a manual page (`q`).
 
