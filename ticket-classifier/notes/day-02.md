@@ -1,7 +1,7 @@
 
-# Day 01: Day 1: Open the terminal and create the project
+# Day 02: Navigate with pwd, ls, and cd
 
-**Tue Aug 25**
+**Tue Aug 26**
 
 **Time spent:02:35:59 PM +0545 2026**
 
