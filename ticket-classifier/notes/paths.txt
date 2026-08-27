@@ -1,0 +1,20 @@
+username@acaiberry:/home$ pwd
+/home
+username@acaiberry:/home$ cd username/daily_learning/acAIberry-foundations-learningpath/ticket-classifier/notes/
+username@acaiberry:~/daily_learning/acAIberry-foundations-learningpath/ticket-classifier/notes$ cd -
+/home
+username@acaiberry:/home$ cd -
+/home/username/daily_learning/acAIberry-foundations-learningpath/ticket-classifier/notes
+username@acaiberry:~/daily_learning/acAIberry-foundations-learningpath/ticket-classifier/notes$ cd /
+username@acaiberry:/$ ls
+bin                home               mnt   sbin.usr-is-merged  usr
+bin.usr-is-merged  lib                opt   snap                var
+boot               lib64              proc  srv
+cdrom              lib.usr-is-merged  root  swap.img
+dev                lost+found         run   sys
+etc                media              sbin  tmp
+username@acaiberry:/$ cd
+username@acaiberry:~$ pwd
+/home/username
+username@acaiberry:~$ cd /home/username/acaiberry/omnio/
+username@acaiberry:~/acaiberry/omnio$ 
