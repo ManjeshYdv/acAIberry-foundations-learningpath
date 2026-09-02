@@ -16,7 +16,7 @@ rg
 ```
 
 ## Task result
-   I learned how to search  
+   I learned how to search using CLI with in different file 
 
 ## Proof
 
