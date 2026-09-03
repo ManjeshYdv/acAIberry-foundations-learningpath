@@ -1,0 +1,15 @@
+day-01.md
+day-02.md
+day-03.md
+day-04.md
+day-06.md
+day-5.md
+file.txt
+image2.png
+image-3.png
+image-4.png
+image-5.png
+image-6.png
+image.png
+paths.txt
+searches.md
