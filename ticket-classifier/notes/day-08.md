@@ -1,4 +1,4 @@
-# Day 03: Manage Processes with jobs, ps, pgrep, top, htop, kill, and fg
+# Day 08: Manage Processes with jobs, ps, pgrep, top, htop, kill, and fg
 
 **Sun Sep 06**
 
@@ -61,7 +61,8 @@ $ pgrep -af python
 261205 ... python-env-tools ...
 1734510 ... streamlit ...
 ```
-![alt](day-08.md)
+
+![alt text](image-8.png)
 
 ## Can I explain it without AI?
 
