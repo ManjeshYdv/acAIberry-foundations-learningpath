@@ -1,5 +1,5 @@
 # Day 10: Checkpoint: build a system report
-**Sun Sep 07**
+**Sun Sep 08**
 
 **Time spent: 11:00 am to 1:10 PM**
 
