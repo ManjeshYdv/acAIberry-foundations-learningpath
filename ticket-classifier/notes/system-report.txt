@@ -1,0 +1,31 @@
+System Report
+=============
+
+Date:
+Tue Sep  8 02:37:14 PM +0545 2026
+
+User:
+manjesh
+
+Host:
+acaiberry
+
+Project size:
+8.0K	.
+
+Disk usage:
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  353G  325G   11G  97% /
+
+Memory usage:
+               total        used        free      shared  buff/cache   available
+Mem:            14Gi        10Gi       1.8Gi       165Mi       3.4Gi       4.7Gi
+Swap:          4.0Gi       2.3Gi       1.7Gi
+
+Top 5 processes by memory usage:
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+manjesh   304143  8.5 10.6 1532063300 1647740 ?  Sl   14:30   0:34 /usr/share/code/code /home/manjesh/.vscode/extensions/salesforce.apex-language-server-extension-0.10.0/dist/server.node.js --stdio --clientProcessId=303383
+manjesh    70620  5.0  6.1 1532063300 957088 ?   Sl   11:04  10:43 /usr/share/code/code /home/manjesh/.vscode/extensions/salesforce.apex-language-server-extension-0.10.0/dist/server.node.js --stdio --clientProcessId=70153
+manjesh   303383  3.5  5.8 1518731916 905892 ?   Sl   14:30   0:14 /usr/share/code/code --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=32915 --enable-crash-reporter=f4e85f28-0da3-41b6-89d8-ecb621b192ce,no_channel --user-data-dir=/home/manjesh/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --cors-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --fetch-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,4466171039522452898,3023255796990512265,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync,GlobalShortcutsPortal,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=7,i,12258562360619894776,15365506033695437013,4 --trace-process-track-uuid=3190709000367499229
+manjesh   271264  5.8  3.8 55619848 600788 ?     Sl   13:56   2:24 /opt/google/chrome/chrome
+manjesh    70153  0.8  3.0 1518739252 470532 ?   Sl   11:03   1:48 /usr/share/code/code --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=32915 --enable-crash-reporter=f4e85f28-0da3-41b6-89d8-ecb621b192ce,no_channel --user-data-dir=/home/manjesh/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --cors-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --fetch-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,4466171039522452898,3023255796990512265,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync,GlobalShortcutsPortal,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=7,i,12258562360619894776,15365506033695437013,4 --trace-process-track-uuid=3190708997556373682
