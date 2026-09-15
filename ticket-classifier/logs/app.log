@@ -1,0 +1,14 @@
+INFO Server started
+INFO Loading configuration
+INFO Database connected
+INFO Model loaded
+INFO API ready
+INFO User logged in
+WARNING High memory
+INFO Request received
+ERROR Database timeout
+INFO Retrying connection
+INFO Connection restored
+WARNING Latency high
+ERROR storage is full
+WARNING Memory usage is high

@@ -1,0 +1,4 @@
+  File "/home/manjesh/daily_learning/acAIberry-foundations-learningpath/ticket-classifier/scripts/./error_demo.py", line 10
+    print("my name is "+ user[name"])
+                                  ^
+SyntaxError: unterminated string literal (detected at line 10)
