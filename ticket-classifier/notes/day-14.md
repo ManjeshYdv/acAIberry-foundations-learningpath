@@ -1,6 +1,6 @@
-# Day 13: Read a Python traceback
+# Day 14: Read a Python traceback
 
-**Sun Sep 015**
+**Sun Sep 15**
 
 **Time spent: 02:00 PM to 2:30 PM**
 
