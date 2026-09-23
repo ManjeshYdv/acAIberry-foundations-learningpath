@@ -1,6 +1,6 @@
-# Day 15: Install and inspect packages
+# Day 16: Install and inspect packages
 
-**Sun Sep 20**
+**Sun Sep 22**
 
 **Time spent: 11:00 AM to 12:00 PM**
 
