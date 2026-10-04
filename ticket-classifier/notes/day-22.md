@@ -20,7 +20,7 @@ git show
 ## Proof
 
 Commit, file, screenshot, command output, or URL:
-![alt text](image-21.png)
+![alt text](image-22.png)
 
 
 ## Can I explain it without AI?
