@@ -277,3 +277,9 @@ Do not add these during the 60 days:
 - multiple cloud environments.
 
 Finishing and understanding this small service is the objective.
+
+## Troubleshooting
+
+- If the environment is not active, activate the project virtual environment before running commands.
+- If a command fails, check the error message and verify that you are in the repository root.
+- Use `git status` to confirm the current branch and working-tree state.
