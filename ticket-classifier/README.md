@@ -283,3 +283,5 @@ Finishing and understanding this small service is the objective.
 - If the environment is not active, activate the project virtual environment before running commands.
 - If a command fails, check the error message and verify that you are in the repository root.
 - Use `git status` to confirm the current branch and working-tree state.
+
+add the line but different text for the conflict
