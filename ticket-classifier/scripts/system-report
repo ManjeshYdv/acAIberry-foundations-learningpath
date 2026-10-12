@@ -15,4 +15,5 @@ free -h
 
 # INTENTIONAL BUG/IMPROVEMENT NEEDED BELOW:
 # This line tries to show the script version, but the variable isn't defined!
+VERSION="1.0.0"
 echo "Script Version: $VERSION" 
