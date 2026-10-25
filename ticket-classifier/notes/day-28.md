@@ -1,8 +1,7 @@
 # Day 28: Give a coding assistant a small task
 
 **Tue Oct 13**
-
-**Time spent: Not recorded**
+**Time spent: 02:30 PM to 3:0 PM**
 
 ## Commands I practiced
 

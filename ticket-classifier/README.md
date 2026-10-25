@@ -78,7 +78,7 @@ The student should be able to run:
 bash scripts/system-report.sh
 ```
 
-It should print the user, host, date, disk, memory, project size, and top memory-consuming processes without changing the machine.
+The script should display the current user, computer name, date, disk and memory usage, project size, and processes using the most memory without changing the machine.
 
 ## Checkpoint 2: expected by Day 20
 
