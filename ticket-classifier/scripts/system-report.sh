@@ -1,14 +1,25 @@
 #!/bin/bash
 
-case "${1:-}" in
-    --help|-h)
-        echo "Display a system report with date, user, disk usage, and memory usage."
-        echo "Usage: $0 [--help|-h]"
-        echo "Options:"
-        echo "    --help, -h    Show this help message and exit."
-        exit 0
-        ;;
-esac
+show_help=false
+for arg in "$@"; do
+    case "$arg" in
+        --help|-h)
+            show_help=true
+            ;;
+        -*)
+            echo "Error: unknown flag: $arg" >&2
+            exit 1
+            ;;
+    esac
+done
+
+if "$show_help"; then
+    echo "Display a system report with date, user, disk usage, and memory usage."
+    echo "Usage: $0 [--help|-h]"
+    echo "Options:"
+    echo "    --help, -h    Show this help message and exit."
+    exit 0
+fi
 
 echo "=== System Report ==="
 echo "Date: $(date)"
